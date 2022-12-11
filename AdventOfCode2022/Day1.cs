@@ -20,6 +20,9 @@ internal class Day1 : IDay
             }
         }
         result = sortedTotalCaloriesSet.Max;
-        Console.WriteLine($"Day 1 result: {result}");
+        Console.WriteLine($"Day 1 result part 1: {result}");
+        var sortedList = sortedTotalCaloriesSet.ToList();
+        result += sortedList[^2] + sortedList[^3];
+        Console.WriteLine($"Day 1 result part 2: {result}");
     }
 }
