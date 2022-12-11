@@ -18,8 +18,8 @@ internal class InputReader
         return lines;
     }
 
-    public static string[] ProcessStringLine(string line)
+    public static string[] ProcessStringLine(string line, char separator = ' ')
     {
-        return line.Split(' ');
+        return line.Split(separator);
     }
 }
