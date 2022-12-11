@@ -7,7 +7,7 @@ internal class Day1 : IDay
         var result = 0;
         var sortedTotalCaloriesSet = new SortedSet<int>();
         var totalCaloriesPerElf = 0;
-        foreach(var line in inputLines)
+        foreach (var line in inputLines)
         {
             if (int.TryParse(line, out int calorie))
             {
