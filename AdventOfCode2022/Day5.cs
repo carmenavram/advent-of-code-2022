@@ -7,7 +7,7 @@ internal class Day5 : IDay
     public void Solve(IList<string?> inputLines)
     {
         var result = string.Empty;
-        var resultSecondPart = 0;
+        var resultSecondPart = string.Empty;
 
         var emptyLineIndex = inputLines.IndexOf(string.Empty);
         var numberOfStacks = InputReader.ProcessStringLineString(inputLines[emptyLineIndex - 1]!, "   ").Length;
@@ -31,6 +31,8 @@ internal class Day5 : IDay
             }
         }
 
+        List<Stack<string>> secondPartStacks = CloneStacks(stacks);
+
         var instructions = GetInstructions(inputLines, emptyLineIndex);
 
         foreach (var instruction in instructions)
@@ -45,6 +47,25 @@ internal class Day5 : IDay
         foreach (var stack in stacks)
         {
             result += stack.Pop();
+        }
+
+        foreach (var instruction in instructions)
+        {
+            var itemsToMove = new Stack<string>();
+            for (int i = 0; i < instruction.NumberOfItems; i++)
+            {
+                itemsToMove.Push(secondPartStacks[instruction.Origin].Pop());
+            }
+            while (itemsToMove.Count > 0)
+            {
+                var itemToMove = itemsToMove.Pop();
+                secondPartStacks[instruction.Destination].Push(itemToMove);
+            }
+        }
+
+        foreach (var stack in secondPartStacks)
+        {
+            resultSecondPart += stack.Pop();
         }
 
         Console.WriteLine($"Day 5 result part 1: {result}");
@@ -66,6 +87,17 @@ internal class Day5 : IDay
             }
 
             return instructions;
+        }
+
+        static List<Stack<string>> CloneStacks(List<Stack<string>> stacks)
+        {
+            var secondPartStacks = new List<Stack<string>>();
+            foreach (var stack in stacks)
+            {
+                secondPartStacks.Add(new Stack<string>(stack.Reverse()));
+            }
+
+            return secondPartStacks;
         }
     }
 }
