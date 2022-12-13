@@ -22,4 +22,6 @@ internal class InputReader
     {
         return line.Split(separator);
     }
+
+    public static string[] ProcessStringLineString(string line, string separator = " ") => line.Split(separator);
 }
