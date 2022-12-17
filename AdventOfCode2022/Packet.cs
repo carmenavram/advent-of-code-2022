@@ -50,13 +50,9 @@ internal class Packet : IComparable<Packet>
                 }
                 var comparison = CompareItems(item1, item2, 1, 1, print);
 
-                if (comparison == 1)
+                if (comparison != 0)
                 {
-                    return 1;
-                }
-                else if (comparison == -1)
-                {
-                    return -1;
+                    return comparison;
                 }
             }
             else
