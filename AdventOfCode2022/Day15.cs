@@ -22,25 +22,6 @@ internal class Day15 : IDay
         result = yLineValues.Count(v => v.Value == NoDistress);
         Console.WriteLine($"Day 15 result part 1: {result}");
 
-        // non-optimal too slow solution part 2
-        //for (int yLine = distressLimit.Min; yLine <= distressLimit.Max; yLine++)
-        //{
-        //    var lineValues = GetLineValues(yLine);
-        //    var lineXValues = new HashSet<int>(lineValues.Keys);
-        //    var lineDistressLimit = new HashSet<int>(Enumerable.Range(distressLimit.Min, distressLimit.Max - distressLimit.Min + 1));
-
-        //    lineDistressLimit.ExceptWith(lineXValues);
-
-        //    if (lineDistressLimit.Any())
-        //    {
-        //        var x = lineDistressLimit.First();
-        //        Console.WriteLine($"Distress beacon: {x} {yLine}");
-        //        Console.WriteLine($"Day 15 result part 2: {x * 4000000 + yLine}");
-
-        //        break;
-        //    }
-        //}
-
         foreach (var sensor in sensors)
         {
             sensor.CalculateNoDistressLimits(distressLimit);
