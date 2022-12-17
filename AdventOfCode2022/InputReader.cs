@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2022;
+﻿using System.Text.RegularExpressions;
+
+namespace AdventOfCode2022;
 
 internal class InputReader
 {
@@ -24,4 +26,6 @@ internal class InputReader
     }
 
     public static string[] ProcessStringLineString(string line, string separator = " ") => line.Split(separator);
+
+    public static int[] GetNumbersFromLine(string line) => Regex.Split(line, @"[^-\d]").Where(n => !string.IsNullOrEmpty(n)).Select(n => Convert.ToInt32(n)).ToArray();
 }

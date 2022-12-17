@@ -81,7 +81,7 @@ internal class Day5 : IDay
                 var line = inputLines[i];
                 if (!string.IsNullOrEmpty(line))
                 {
-                    var numbers = Regex.Split(line, @"\D+").Where(n => !string.IsNullOrEmpty(n)).Select(n => Convert.ToInt32(n)).ToArray();
+                    var numbers = InputReader.GetNumbersFromLine(line);
                     instructions.Add((numbers[0], numbers[1] - 1, numbers[2] - 1));
                 }
             }
